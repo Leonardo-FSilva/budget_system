@@ -79,7 +79,6 @@ class ProgramWindows:
                 self.window['tra_multiline'].update('\n'.join(item.tra_report))
                 
 
-
 if __name__ == '__main__':
     item = Item()
     program = ProgramWindows()
