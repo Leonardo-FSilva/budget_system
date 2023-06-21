@@ -65,7 +65,7 @@ class ProgramWindows:
     def make_report():
         pass
 
-    def execute(self):
+    def execute(self): 
         while True:
             event, values = self.window.read()
             if event == sg.WIN_CLOSED or event == 'sair_key':
