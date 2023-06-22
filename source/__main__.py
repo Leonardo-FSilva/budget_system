@@ -59,8 +59,10 @@ class ProgramWindows:
     def add_itens():
         pass
 
-    def calculate():
-        pass
+    def calculate(self):
+        total_value = sum(item.tra_value)
+        print(total_value)
+
 
     def make_report():
         pass
@@ -72,11 +74,10 @@ class ProgramWindows:
                 break
 
             elif event == 'add_trabalho_key':
-                item.tra_description = values['trab_descricao']
-                item.tra_value = values['trab_valor']
+                pass
 
-                item.tra_report.append('{:<3}- {:<180}R${:>10}'.format(len(item.tra_report)+1, item.tra_description, item.tra_value))
-                self.window['tra_multiline'].update('\n'.join(item.tra_report))
+            elif event == 'Gerar relatorio':
+                pass
                 
 
 if __name__ == '__main__':
