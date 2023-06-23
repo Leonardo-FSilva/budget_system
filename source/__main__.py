@@ -56,12 +56,11 @@ class ProgramWindows:
         self.layout = [[self.col1, self.col2]]
         self.window = sg.Window('Nitrotec', self.layout)
 
-    def add_itens():
+    def add_itens(self):
         pass
 
     def calculate(self):
-        total_value = sum(item.tra_value)
-        print(total_value)
+        pass
 
 
     def make_report():
@@ -74,10 +73,10 @@ class ProgramWindows:
                 break
 
             elif event == 'add_trabalho_key':
-                pass
+                program.add_itens()
 
             elif event == 'Gerar relatorio':
-                pass
+                program.make_report()
                 
 
 if __name__ == '__main__':
