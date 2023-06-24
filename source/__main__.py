@@ -4,14 +4,19 @@ class Item:
     def __init__(self):
         self.tra_description = ''
         self.tra_value = ''
-        self.tra_report = []
+        self.tra_report = {'desc':[], 'val':[]}
 
         self.mat_description = ''
         self.mat_value = ''
-        self.mat_report = []
+        self.mat_report = {'desc':[], 'val':[]}
 
-    def saving_list(self):
-        pass
+    def saving_list(self, type):
+        if type == 'trabalho':
+            self.tra_report['desc'].append(self.tra_description)
+            self.tra_report['val'].append(self.tra_value)
+        else:
+            self.mat_report['desc'].append(self.mat_description)
+            self.mat_report['val'].append(self.mat_value)
 
 class ProgramWindows:
     def __init__(self):
@@ -57,11 +62,10 @@ class ProgramWindows:
         self.window = sg.Window('Nitrotec', self.layout)
 
     def add_itens(self):
-        pass
+        item.saving_list()
 
     def calculate(self):
         pass
-
 
     def make_report():
         pass
@@ -73,15 +77,12 @@ class ProgramWindows:
                 break
 
             elif event == 'add_trabalho_key':
-                program.add_itens()
+                program.add_itens(type='trabalho')
 
             elif event == 'Gerar relatorio':
                 program.make_report()
-                
 
 if __name__ == '__main__':
     item = Item()
     program = ProgramWindows()
     program.execute()
-
-    
