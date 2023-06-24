@@ -79,6 +79,9 @@ class ProgramWindows:
             elif event == 'add_trabalho_key':
                 program.add_itens(type='trabalho')
 
+            elif event == 'add_material_key':
+                program.add_itens(type='material')
+
             elif event == 'Gerar relatorio':
                 program.make_report()
 
