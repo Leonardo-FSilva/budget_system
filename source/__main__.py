@@ -76,15 +76,15 @@ class ProgramWindows:
         for i in range(len(item.tra_report['desc'])):
             desc = item.tra_report['desc'][i][:100].ljust(100)
             val = item.tra_report['val'][i][:20].rjust(20)
-            report += f"Índice: {str(i)[:5].ljust(5)}, Descrição: {desc}, Valor: R${val}\n"
+            report += "{:<5}{}R${}\n".format(str(i)[:5].ljust(5), desc, val)
 
         report += "Material:\n"
         for i in range(len(item.mat_report['desc'])):
             desc = item.mat_report['desc'][i][:100].ljust(100)
             val = item.mat_report['val'][i][:20].rjust(20)
-            report += f"Índice: {str(i)[:5].ljust(5)}, Descrição: {desc}, Valor: R${val}\n"
+            report += "{:<5}{}R${}\n".format(str(i)[:5].ljust(5), desc, val)
 
-        sg.popup_scrolled(report, title='Relatório')
+        sg.popup_scrolled(report, title='Relatório', size=(110, 50))
 
     def execute(self):
         while True:
@@ -94,17 +94,17 @@ class ProgramWindows:
 
             elif event == 'add_trabalho_key':
                 self.add_itens(values['trab_descricao'], values['trab_valor'], 'trabalho')
-                desc = values['trab_descricao'][:100]
+                desc = values['trab_descricao']
                 val = values['trab_valor']
                 self.window['tra_multiline'].print(
-                    f"Índice: {str(len(item.tra_report['desc']) - 1)[:5].ljust(5)}, Descrição: {desc:<100}, Valor: R${val:>20}")
+                    "{: <3}- {: <110}{: >9}".format(str(len(item.tra_report['desc'])), desc, val), font=('Courier New', 9))
 
             elif event == 'add_material_key':
                 self.add_itens(values['mat_descricao'], values['mat_valor'], 'material')
                 desc = values['mat_descricao'][:100]
                 val = values['mat_valor']
                 self.window['mat_multiline'].print(
-                    f"Índice: {str(len(item.mat_report['desc']) - 1)[:5].ljust(5)}, Descrição: {desc:<100}, Valor: R${val:>20}")
+                    "{: <3}{: <110}{: >9}".format(str(len(item.mat_report['desc'])), desc, val), font=('Courier New', 9))
 
             elif event == 'Gerar relatorio':
                 self.calculate()
