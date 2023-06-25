@@ -76,15 +76,15 @@ class ProgramWindows:
         for i in range(len(item.tra_report['desc'])):
             desc = item.tra_report['desc'][i][:100].ljust(100)
             val = item.tra_report['val'][i][:20].rjust(20)
-            report += "{:<5}{}R${}\n".format(str(i)[:5].ljust(5), desc, val)
+            report += "{:<5}{}{:.2f}\n".format(str(i)[:5].ljust(5), desc, val)
 
-        report += "Material:\n"
+        report += "\nMaterial:\n"
         for i in range(len(item.mat_report['desc'])):
             desc = item.mat_report['desc'][i][:100].ljust(100)
             val = item.mat_report['val'][i][:20].rjust(20)
-            report += "{:<5}{}R${}\n".format(str(i)[:5].ljust(5), desc, val)
+            report += "{:<5}{}{:.2f}\n".format(str(i)[:5].ljust(5), desc, val)
 
-        sg.popup_scrolled(report, title='Relatório', size=(110, 50))
+        sg.popup_scrolled(report, title='Relatório', size=(110, 25))
 
     def execute(self):
         while True:
