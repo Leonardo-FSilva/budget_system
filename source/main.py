@@ -19,7 +19,7 @@ class ProgramWindows:
         self.col1 = sg.Column([
             [sg.Frame('Informações',
                 [
-                    [sg.Text(), sg.Column([[sg.Text('Nome cliente:')],
+                    [sg.Text(), sg.Column([[sg.Text('cliente empresa:')],
                                            [sg.Input(key='nome_cliente_key', size=(30, 1))],
                                            [sg.Text('Estado:')],
                                            [sg.Input(key='estado_key', size=(30, 1))],
@@ -69,20 +69,10 @@ class ProgramWindows:
         # Realize os cálculos necessários com base nos itens adicionados
         pass
 
-    def make_report(self):
+    def make_report(self, report):
         # Gere o relatório com base nos itens adicionados e nos cálculos realizados
-        report = "Relatório:\n\n"
-        report += "Trabalho:\n"
-        for i in range(len(item.tra_report['desc'])):
-            desc = item.tra_report['desc'][i][:100].ljust(100)
-            val = item.tra_report['val'][i][:20].rjust(20)
-            report += "{:<5}{}{:.2f}\n".format(str(i)[:5].ljust(5), desc, val)
 
-        report += "\nMaterial:\n"
-        for i in range(len(item.mat_report['desc'])):
-            desc = item.mat_report['desc'][i][:100].ljust(100)
-            val = item.mat_report['val'][i][:20].rjust(20)
-            report += "{:<5}{}{:.2f}\n".format(str(i)[:5].ljust(5), desc, val)
+        ### nao é possivel referenciar coisas da janela que teoricamente nao foram criadas ainda (codigo futuro)
 
         sg.popup_scrolled(report, title='Relatório', size=(110, 25))
 
@@ -108,7 +98,24 @@ class ProgramWindows:
 
             elif event == 'Gerar relatorio':
                 self.calculate()
-                self.make_report()
+
+                report = ("Relatório: {}".format(values['nome_cliente_key']))       
+                report += ('\n{} - {}'.format(values['estado_key'], values['cidade_key']))
+                report += ('\nSr {} telefone: {}'.format(values["responsavel_key"], values["telefone_key"]))
+                report += ('E-mail: {}\n\n'.format(values["e-mail_key"]))
+
+                report += "Trabalho:\n"
+                for i in range(len(item.tra_report['desc'])):
+                    desc = item.tra_report['desc'][i][:100].ljust(100)
+                    val = item.tra_report['val'][i][:20].rjust(20)
+                    report += ("{}{}{}\n".format(i, desc, val))
+
+                report += "\nMaterial:\n"
+                for i in range(len(item.mat_report['desc'])):
+                    desc = item.mat_report['desc'][i][:100].ljust(100)
+                    val = item.mat_report['val'][i][:20].rjust(20)
+                    report += ("{}{}{}\n".format(i, desc, val))
+                self.make_report(report)
 
 if __name__ == '__main__':
     item = Item()
