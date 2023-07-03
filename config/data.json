@@ -1,0 +1,27 @@
+{
+    "coeficientes": {
+        "comissao": 0.97,
+        "impostos": 0.9075,
+        "maodeobra": 0.88,
+        "material": 0.84,
+        "coeficientedeestrutura": 1.35
+    },
+    "informacoes": {
+        "cliente": "",
+        "estado": "",
+        "cidade": "",
+        "telefone": "",
+        "email": "",
+        "responsavel": ""
+    },
+    "maodeobra": {
+        "index": [],
+        "descricao": [],
+        "valor": []
+    },
+    "material": {
+        "index": [],
+        "descricao": [],
+        "valor": []
+    }
+}
