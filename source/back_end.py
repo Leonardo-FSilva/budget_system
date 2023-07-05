@@ -86,15 +86,38 @@ class User:
         with open(path, "r") as file:
             self.gerarRelatorio(file)
 
+    def calcularRelatorio(self):
+        with open(DATA, 'r') as file:
+            relatorio = json.load(file)
+
+        valor = 0
+        for i in range(len(relatorio["maodeobra"]["index"])):
+            valor += relatorio["maodeobra"]["valor"][i]
+
+        for i in range(len(relatorio["material"]["index"])):
+            valor += relatorio["material"]["valor"][i]
+
+        valor /= relatorio['coeficientes']['comissao']
+        valor /= relatorio['coeficientes']['impostos']
+        valor /= relatorio['coeficientes']['maodeobra']
+        valor /= relatorio['coeficientes']['material']
+        valor *= relatorio['coeficientes']['coeficientedeestrutura']
+    
+        return str('R${:.2f}'.format(valor)).replace('.',',')
+
 
 if __name__ == "__main__":
-    #carlos = User()
-    #carlos.adcionaMaterial('batata', 75)
-    #carlos.adcionaMaterial('macarrao', 50)
-    #carlos.adcionaMaterial('uva', 15)
-    #carlos.editarMaterial(1, "maca do amor", 15)
-#
-    #carlos.gerarRelatorio()
+    carlos = User()
 
+    #carlos.adcionaMaterial('batata', 75)
+
+    #carlos.adcionaMaterial('macarrao', 50)
+
+    #carlos.adcionaMaterial('uva', 15)
+
+    #carlos.editarMaterial(1, "maca do amor", 15)
+
+    #carlos.gerarRelatorio()
+    
     #carlos.salvarRelatorio()
-    pass
+    #print(carlos.calcularRelatorio())

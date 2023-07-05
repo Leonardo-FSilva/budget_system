@@ -1,0 +1,12 @@
+
+Para chegar no resultado final do valor do orçamento deve-se:
+    1° - Somar todos os valores de mão de obra.
+    2° - Somar todos os valores de material.
+    3° - Somar material e mão de obra.
+    4° - Resultado deve ser dividido pela comissão (0,97).
+    5° - Resultado deve ser dividido pelo imposto (0,9075).
+    6° - Resultado deve ser dividido pelo coeficiente de mão de obra (0,88).
+    7° - Resultado deve ser dividido pelo coeficiente de material (0,84).
+    8° - resultado deve ser multiplicado pelo coeficiente de estrutura (1,35).
+
+resultado desse passo a passo é o valor do orçamento.
