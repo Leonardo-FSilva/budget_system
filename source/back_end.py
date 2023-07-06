@@ -90,12 +90,21 @@ class User:
         with open(DATA, 'r') as file:
             relatorio = json.load(file)
 
-        valor = 0
+        valor_mat = 0
+        valor_mat = 0
+
         for i in range(len(relatorio["maodeobra"]["index"])):
-            valor += relatorio["maodeobra"]["valor"][i]
+            valor_maoobra += relatorio["maodeobra"]["valor"][i]
+
+        
 
         for i in range(len(relatorio["material"]["index"])):
-            valor += relatorio["material"]["valor"][i]
+            valor_mat += relatorio["material"]["valor"][i]
+
+        valor = valor_maoobra + valor_mat
+
+        valor_maoobra = str('R${:.2f}'.format(valor_maoobra).replace('.',','))
+        valor_mat = str('R${:.2f}'.format(valor_mat).replace('.',','))
 
         valor /= relatorio['coeficientes']['comissao']
         valor /= relatorio['coeficientes']['impostos']
@@ -103,7 +112,9 @@ class User:
         valor /= relatorio['coeficientes']['material']
         valor *= relatorio['coeficientes']['coeficientedeestrutura']
     
-        return str('R${:.2f}'.format(valor)).replace('.',',')
+        valor = str('R${:.2f}'.format(valor)).replace('.',',')
+
+        return([valor_mat, valor_maoobra, valor])
 
 
 if __name__ == "__main__":

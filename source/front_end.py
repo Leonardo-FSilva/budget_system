@@ -1,4 +1,11 @@
 import PySimpleGUI as sg
+from pathlib import Path
+import json
+
+DATA = Path(__file__).parent.parent / "config\data.json"
+
+with open(DATA, 'r') as file:
+    DATA = json.load(file)
 
 col1 = sg.Column([
             [sg.Frame('Informações',
@@ -14,10 +21,17 @@ col1 = sg.Column([
                 [sg.Input(key='e-mail_key', size=(30, 1))],
                 [sg.Text('Responsavel:')],
                 [sg.Input(key='responsavel_key', size=(30, 1))]
-                ], size=(235, 350), pad=(0, 0))]])],
+                ], size=(320, 350), pad=(0, 0))]])],
 
             [sg.Frame('Ações:',
-                      [[sg.Column([[sg.Button('Gerar relatorio'), sg.Button('Configurações'), sg.Button('Sair', key='sair_key'), ]], size=(250, 45), pad=(0, 0))]])]])
+                      [[sg.Column([[sg.Button('Gerar relatorio'), sg.Button('Editamaterialr '), sg.Button('Editar mão de obra')],
+                                   [],
+                                   [sg.Text('Comissão: '), sg.Input(size=(7), default_text=str(DATA['coeficientes']['comissao']).replace('.', ','))],
+                                   [sg.Text('Imposto: '), sg.Input(size=(7), default_text=str(DATA['coeficientes']['impostos']).replace('.', ','))],
+                                   [sg.Text('Coef. mão de obra: '), sg.Input(size=(7), default_text=str(DATA['coeficientes']['maodeobra']).replace('.', ','))],
+                                   [sg.Text('Corf. material: '), sg.Input(size=(7), default_text=str(DATA['coeficientes']['material']).replace('.', ','))],
+                                   [sg.Text('Coef. estrutura: '), sg.Input(size=(7), default_text=str(DATA['coeficientes']['coeficientedeestrutura']).replace('.', ','))],
+                                   [sg.Button('Alterar configurações') ]], size=(335, 200), pad=(0, 0))]])]])
 
 col2 = sg.Column([
     [sg.Frame('Mão de obra',
@@ -39,7 +53,7 @@ if __name__ == '__main__':
     event, values = window.read()
 
     while True:
-        if event == sg.WINDOW_CLOSED or event == 'sair_key':
+        if event == sg.WINDOW_CLOSED or event:
             break
 
 
