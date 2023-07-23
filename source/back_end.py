@@ -128,8 +128,32 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatorio, file, indent=4)
-    def alterarSetup(self, comissao, imposto, mobra, material, estrutura):
-        pass
+    def alterarSetup(self, comissao, impostos, maodeobra, material, coeficientedeestrutura):
+        with open(DATA, 'r') as file:
+            relatorio = json.load(file)
+
+        relatorio['coeficientes']['comissao'] = comissao
+        relatorio['coeficientes']['impostos'] = impostos
+        relatorio['coeficientes']['maodeobra'] = maodeobra
+        relatorio['coeficientes']['material'] = material
+        relatorio['coeficientes']['coeficientedeestrutura'] = coeficientedeestrutura
+
+        with open(DATA, 'w') as file:
+            json.dump(relatorio, file, indent=4)
+    def gerarRelatorio(self, cliente, estado, cidade, telefone, email, responsavel):
+        with open(DATA, 'r') as file:
+            relatorio = json.load(file)
+
+        relatorio['informacoes']['cliente'] = cliente
+        relatorio['informacoes']['estado'] = estado
+        relatorio['informacoes']['cidade'] = cidade
+        relatorio['informacoes']['telefone'] = telefone
+        relatorio['informacoes']['responsavel'] = responsavel
+
+        with open(DATA, 'w') as file:
+            json.dump(relatorio, file, indent=4)
+
+        
 
 if __name__ == "__main__":
     carlos = User()
