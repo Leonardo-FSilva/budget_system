@@ -15,13 +15,40 @@
         "responsavel": ""
     },
     "maodeobra": {
-        "index": [1,2,3],
-        "descricao": [],
-        "valor": [1,2,3]
+        "index": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "descricao": [
+            "PINTAR",
+            "PINTAR",
+            "PINTAR",
+            "PINTAR"
+        ],
+        "valor": [
+            "150",
+            "150",
+            "150",
+            "150"
+        ]
     },
     "material": {
-        "index": [1,2,3],
-        "descricao": [],
-        "valor": [1,2,3]
+        "index": [
+            1,
+            2,
+            3
+        ],
+        "descricao": [
+            "CHAPA DE A\u00c7O",
+            "CHAPA DE A\u00c7O",
+            "CHAPA DE A\u00c7O"
+        ],
+        "valor": [
+            "500",
+            "500",
+            "500"
+        ]
     }
 }

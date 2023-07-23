@@ -1,4 +1,5 @@
 from datetime import datetime
+import PySimpleGUI as sg
 from pathlib import Path
 import json
 
@@ -6,6 +7,9 @@ DATA = Path(__file__).parent.parent / "config\data.json"
 NEW_FILE_PAHT = Path(__file__).parent.parent / "config"
 
 class User:
+    def tela_editarlinha(self):
+        return [[sg.Text('indice:'), sg.Input(size=7, key='editarlinha_ind'), sg.Text('descrição:'), sg.Input(size=80, key='editarlinha_des'), sg.Text('valor:'), sg.Input(size=15, key='editarlinha_val')],
+                [sg.Button('Editar linha')]]
     def adcionaMaterial(self, desc, val):
         with open(DATA, 'r') as file:
             relatoriomp = json.load(file)
@@ -16,7 +20,6 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatoriomp, file, indent=4)
-    
     def editarMaterial(self, ind, desc, val):
         with open(DATA, 'r') as file:
             relatoriomp = json.load(file)
@@ -26,7 +29,6 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatoriomp, file, indent=4)
-
     def adicionaMaoObra(self, desc, val):
         with open(DATA, 'r') as file:
             relatoriomo = json.load(file)
@@ -37,7 +39,6 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatoriomo, file, indent=4)
-    
     def editarMaoObra(self, ind, desc, val):
         with open(DATA, 'r') as file:
             relatoriomo =json.load(file)
@@ -47,25 +48,29 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatoriomo, file, indent=4)
-
     def gerarRelatorio(self, path_to_open=''):
         if path_to_open == '':
             with open(DATA, 'r') as file:
-                relatoriomp = json.load(file)
-                relatoriomo = json.load(file)
+                relatorio = json.load(file)
         else:
-            with open(path_to_open, 'r+')as file:
-                relatoriomp = json.load(file)
-                relatoriomo = json.load(file)
+            with open(path_to_open, 'r')as file:
+                relatorio = json.load(file)
 
         relatoriomp_formatado = ''
-        for iten in range(0, len(relatoriomp["material"]['index'])):
-            relatoriomp_formatado += ('{:<5}{:<120}R${}\n'.format(relatoriomp["material"]['index'][iten], relatoriomp["material"]['descricao'][iten], relatoriomp["material"]['valor'][iten]))
+        relatoriomp_formatado += ('{:^7}| {:<100}|{}\n'.format('IND', 'Descrição', 'Valor R$'))
+        relatoriomp_formatado += (f'{"-"*7}|{"-"*101}|{"-"*18}\n')
+        if len(relatorio["material"]['index']) > 0:
+            for iten in range(0, len(relatorio["material"]['index'])):
+                relatoriomp_formatado += ('{:^7}| {:<100}| R${}\n'.format(relatorio["material"]['index'][iten], relatorio["material"]['descricao'][iten], relatorio["material"]['valor'][iten]))
         
         relatoriomo_formatado = ''
-        for iten in range(0, len(relatoriomo["maodeobra"]['index'])):
-            relatoriomo_formatado += ('{:<5}{:<120}R${}\n'.format(relatoriomo["maodeobra"]['index'][iten], relatoriomo["maodeobra"]['descricao'][iten], relatoriomo["maodeobra"]['valor'][iten]))
-
+        relatoriomo_formatado += ('{:^7}| {:<100}|{}\n'.format('IND', 'Descrição', 'Valor R$'))
+        relatoriomo_formatado += (f'{"-"*7}|{"-"*101}|{"-"*18}\n')
+        if len(relatorio["maodeobra"]['index']) > 0:
+            for iten in range(0, len(relatorio["maodeobra"]['index'])):
+                relatoriomo_formatado += ('{:^7}| {:<100}| R${}\n'.format(relatorio["maodeobra"]['index'][iten], relatorio["maodeobra"]['descricao'][iten], relatorio["maodeobra"]['valor'][iten]))
+        
+        return [relatoriomo_formatado ,relatoriomp_formatado]
     def salvarRelatorio(self):
         with open(DATA, 'r') as file:
             relatorio = json.load(file)
@@ -81,11 +86,9 @@ class User:
             return print("Error: avise o leonardo...")
         finally:
             new_file.close()
-
     def abrirRelatorio(self, path):
         with open(path, "r") as file:
             self.gerarRelatorio(file)
-
     def calcularRelatorio(self):
         with open(DATA, 'r') as file:
             relatorio = json.load(file)
@@ -115,7 +118,18 @@ class User:
         valor = str('R${:.2f}'.format(valor)).replace('.',',')
 
         return([valor_mat, valor_maoobra, valor])
+    def removerLinha(self, type, linha):
+        with open(DATA, 'r') as file:
+            relatorio = json.load(file)
+        
+        relatorio[type]['index'].pop()
+        relatorio[type]['descricao'].pop(linha-1)
+        relatorio[type]['valor'].pop(linha-1)
 
+        with open(DATA, 'w') as file:
+            json.dump(relatorio, file, indent=4)
+    def alterarSetup(self, comissao, imposto, mobra, material, estrutura):
+        pass
 
 if __name__ == "__main__":
     carlos = User()
@@ -128,7 +142,8 @@ if __name__ == "__main__":
 
     #carlos.editarMaterial(1, "maca do amor", 15)
 
-    #carlos.gerarRelatorio()
-    
+    #relat=carlos.gerarRelatorio()
+    #print(relat[0])
+
     #carlos.salvarRelatorio()
     #print(carlos.calcularRelatorio())
