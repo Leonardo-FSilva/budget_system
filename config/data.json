@@ -7,57 +7,45 @@
         "coeficientedeestrutura": 1.35
     },
     "informacoes": {
-        "cliente": "",
-        "estado": "",
-        "cidade": "",
-        "telefone": "",
-        "email": "",
-        "responsavel": ""
+        "cliente": "Urbita",
+        "estado": "sao paulo",
+        "cidade": "jundiai",
+        "telefone": "11999835594",
+        "email": "thalita@propriedade_leo.com",
+        "responsavel": "Thalita"
     },
     "maodeobra": {
         "index": [
             1,
             2,
-            3,
-            4,
-            5
+            3
         ],
         "descricao": [
-            "thlita",
-            "piruguluglu",
-            "GGEZ",
-            "GGEZ",
-            "GGEZ"
+            "DESCRI\u00c7\u00c3O",
+            "DESCRI\u00c7\u00c3O",
+            "DESCRI\u00c7\u00c3O"
         ],
         "valor": [
-            "999",
-            "1414",
-            "500",
-            "500",
-            "500"
+            "150",
+            "150",
+            "150"
         ]
     },
     "material": {
         "index": [
             1,
             2,
-            3,
-            4,
-            5
+            3
         ],
         "descricao": [
-            "ggez",
-            "GGRGR",
-            "GG",
-            "GG",
-            "GG"
+            "MATERIAL",
+            "MATERIAL",
+            "MATERIAL"
         ],
         "valor": [
-            "150",
-            "15",
-            "113",
-            "113",
-            "113"
+            "111",
+            "111",
+            "111"
         ]
     }
 }

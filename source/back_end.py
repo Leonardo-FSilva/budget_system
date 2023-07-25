@@ -175,7 +175,6 @@ class User:
                 sheet.cell(row=start_row, column=start_column + i, value=value)
             start_row += 1
 
-        book.save(RELATORIO_EXCEL)
 #___________________________________________________
         start_row = 13
         start_column = 5
@@ -184,7 +183,37 @@ class User:
             for i, value in enumerate(r):
                 sheet.cell(row=start_row, column=start_column + i, value=value)
             start_row += 1
+#____________________________________________________
+        celula = 'B4'  # cliente
+        sheet[celula] = cliente
 
+        celula = 'B5'  # estado
+        sheet[celula] = estado
+
+        celula = 'B6'  # cidade
+        sheet[celula] = cidade
+
+        celula = 'B7'  # telefone
+        sheet[celula] = telefone
+
+        celula = 'B8'  # email
+        sheet[celula] = email
+
+        celula = 'B9'  # responsavel
+        sheet[celula] = responsavel
+#___________________________________________________
+        valores = carlos.calcularRelatorio()
+
+        celula = 'F4'  # material
+        sheet[celula] = valores[0]
+
+        celula = 'F5'  # mao de obra
+        sheet[celula] = valores[1]
+
+        celula = 'F6'  # valor
+        sheet[celula] = valores[2]
+
+        
         book.save(RELATORIO_EXCEL)
 
 
