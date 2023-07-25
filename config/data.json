@@ -7,12 +7,12 @@
         "coeficientedeestrutura": 1.35
     },
     "informacoes": {
-        "cliente": "Urbita",
+        "cliente": "urbita",
         "estado": "sao paulo",
         "cidade": "jundiai",
-        "telefone": "11999835594",
-        "email": "thalita@propriedade_leo.com",
-        "responsavel": "Thalita"
+        "telefone": "11 99999-9999",
+        "email": "thalita@gmail.com",
+        "responsavel": "thalita gita"
     },
     "maodeobra": {
         "index": [
@@ -21,14 +21,14 @@
             3
         ],
         "descricao": [
-            "DESCRI\u00c7\u00c3O",
-            "DESCRI\u00c7\u00c3O",
-            "DESCRI\u00c7\u00c3O"
+            "PINTAR",
+            "SOLDAR",
+            "USINAR"
         ],
         "valor": [
             "150",
             "150",
-            "150"
+            "500"
         ]
     },
     "material": {
@@ -38,14 +38,14 @@
             3
         ],
         "descricao": [
-            "MATERIAL",
-            "MATERIAL",
-            "MATERIAL"
+            "CHAPA DE A\u00c7O",
+            "CONEXOES",
+            "TINTAS"
         ],
         "valor": [
-            "111",
-            "111",
-            "111"
+            "200",
+            "400",
+            "100"
         ]
     }
 }

@@ -98,16 +98,16 @@ class User:
         with open(DATA, 'r') as file:
             relatorio = json.load(file)
 
-        valor_mat = 0
+        valor_maoobra = 0
         valor_mat = 0
 
         for i in range(len(relatorio["maodeobra"]["index"])):
-            valor_maoobra += relatorio["maodeobra"]["valor"][i]
+            valor_maoobra += float(relatorio["maodeobra"]["valor"][i])
 
         
 
         for i in range(len(relatorio["material"]["index"])):
-            valor_mat += relatorio["material"]["valor"][i]
+            valor_mat += float(relatorio["material"]["valor"][i])
 
         valor = valor_maoobra + valor_mat
 
@@ -202,7 +202,7 @@ class User:
         celula = 'B9'  # responsavel
         sheet[celula] = responsavel
 #___________________________________________________
-        valores = carlos.calcularRelatorio()
+        valores = self.calcularRelatorio()
 
         celula = 'F4'  # material
         sheet[celula] = valores[0]
