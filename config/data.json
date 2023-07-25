@@ -19,19 +19,22 @@
             1,
             2,
             3,
-            4
+            4,
+            5
         ],
         "descricao": [
             "thlita",
-            "leozao",
-            "PINTAR",
-            "PINTAR"
+            "piruguluglu",
+            "GGEZ",
+            "GGEZ",
+            "GGEZ"
         ],
         "valor": [
             "999",
-            "40",
-            "150",
-            "150"
+            "1414",
+            "500",
+            "500",
+            "500"
         ]
     },
     "material": {
@@ -43,18 +46,18 @@
             5
         ],
         "descricao": [
-            "cama",
-            "leozao",
-            "CHAPA DE A\u00c7O",
-            "FF",
-            "GGRGR"
+            "ggez",
+            "GGRGR",
+            "GG",
+            "GG",
+            "GG"
         ],
         "valor": [
-            "1503",
-            "99",
-            "500",
-            "1500",
-            "15"
+            "150",
+            "15",
+            "113",
+            "113",
+            "113"
         ]
     }
 }

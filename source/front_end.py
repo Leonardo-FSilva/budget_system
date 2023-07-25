@@ -21,7 +21,7 @@ col1 = sg.Column([
                 [sg.Text('Telefone:')],
                 [sg.Input(key='telefone_key', size=(30, 1))],
                 [sg.Text('E-mail:')],
-                [sg.Input(key='e-mail_key', size=(30, 1))],
+                [sg.Input(key='email_key', size=(30, 1))],
                 [sg.Text('Responsavel:')],
                 [sg.Input(key='responsavel_key', size=(30, 1))]
                 ], size=(297, 330), pad=(0, 0))]])],

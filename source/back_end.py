@@ -2,9 +2,14 @@ from datetime import datetime
 import PySimpleGUI as sg
 from pathlib import Path
 import json
+import pandas as pd
+from openpyxl import load_workbook
+
 
 DATA = Path(__file__).parent.parent / "config\data.json"
 NEW_FILE_PAHT = Path(__file__).parent.parent / "config"
+MODELO_EXCEL = Path(__file__).parent.parent / 'config\modelo_excel.xlsx'
+RELATORIO_EXCEL = Path(__file__).parent.parent / 'config\\relatorio_excel.xlsx'
 
 class User:
     def tela_editarlinha(self):
@@ -140,7 +145,7 @@ class User:
 
         with open(DATA, 'w') as file:
             json.dump(relatorio, file, indent=4)
-    def gerarRelatorio(self, cliente, estado, cidade, telefone, email, responsavel):
+    def gerarRelatorioFinal(self, cliente, estado, cidade, telefone, email, responsavel):
         with open(DATA, 'r') as file:
             relatorio = json.load(file)
 
@@ -148,12 +153,40 @@ class User:
         relatorio['informacoes']['estado'] = estado
         relatorio['informacoes']['cidade'] = cidade
         relatorio['informacoes']['telefone'] = telefone
+        relatorio['informacoes']['email'] = email
         relatorio['informacoes']['responsavel'] = responsavel
 
         with open(DATA, 'w') as file:
             json.dump(relatorio, file, indent=4)
 
-        
+        # Criar o DataFrame a partir do dicionário
+        df_maodeobra = pd.DataFrame(relatorio['maodeobra'])
+        df_material = pd.DataFrame(relatorio['material'])
+
+        book = load_workbook(MODELO_EXCEL)
+
+        sheet = book.worksheets[0]
+
+        start_row = 13
+        start_column = 1
+
+        for r in df_maodeobra.values:
+            for i, value in enumerate(r):
+                sheet.cell(row=start_row, column=start_column + i, value=value)
+            start_row += 1
+
+        book.save(RELATORIO_EXCEL)
+#___________________________________________________
+        start_row = 13
+        start_column = 5
+
+        for r in df_material.values:
+            for i, value in enumerate(r):
+                sheet.cell(row=start_row, column=start_column + i, value=value)
+            start_row += 1
+
+        book.save(RELATORIO_EXCEL)
+
 
 if __name__ == "__main__":
     carlos = User()

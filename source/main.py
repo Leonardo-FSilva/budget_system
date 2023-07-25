@@ -16,10 +16,10 @@ while True:
         estado = values['estado_key']
         cidade = values['cidade_key']
         telefone = values['telefone_key']
-        email = values['mail_key']
+        email = values['email_key']
         responsavel = values['responsavel_key']
         
-        carlos.gerarRelatorio(cliente, estado, cidade, telefone, email, responsavel)
+        carlos.gerarRelatorioFinal(cliente, estado, cidade, telefone, email, responsavel)
 
     if event == 'Alterar configurações':
         comissao = float((values['comissao']).replace(',','.'))
